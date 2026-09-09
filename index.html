@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="./css/index.css" />
 
     <style>
-      /* نمط الزجاج الشفاف (Glassmorphism) */
+      /* نمط الزجاج الشفاف (Glassmorphism) وتوسيط كامل الصفحة */
       body {
         margin: 0;
         padding: 0;
@@ -35,6 +35,11 @@
         color: #e6edf3;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
       }
 
       .floating-menu,
@@ -50,6 +55,36 @@
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
       }
 
+      .floating-menu {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        gap: 8px;
+        padding: 8px 16px;
+      }
+
+      .header {
+        text-align: center;
+        margin-top: 60px;
+      }
+
+      .header-title {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
+      #PS4FW {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #8bb4e7;
+        margin-top: 5px;
+      }
+
       .menu-btn,
       .button-container button,
       .close-btn,
@@ -60,6 +95,8 @@
         border-radius: 8px !important;
         backdrop-filter: blur(8px);
         transition: all 0.25s ease;
+        padding: 8px 16px;
+        cursor: pointer;
       }
 
       .menu-btn:hover,
@@ -71,30 +108,47 @@
         transform: translateY(-2px);
       }
 
-      /* بطاقة حالة التشغيل التلقائي */
+      #jailbreak-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      /* بطاقة حالة التشغيل الزجاجية في المنتصف تماماً */
       .glass-status-box {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 50px auto;
-        padding: 30px;
-        width: fit-content;
-        min-width: 260px;
+        margin: 20px auto;
+        padding: 40px 50px;
+        min-width: 280px;
         background: rgba(255, 255, 255, 0.04);
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        border-radius: 24px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
       }
 
       .status-label {
-        margin-top: 15px;
-        font-size: 1.05rem;
+        margin-top: 20px;
+        font-size: 1.15rem;
         color: #90caf9;
         font-weight: 500;
         letter-spacing: 0.5px;
+        text-align: center;
+      }
+
+      #DebugConsole {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
       }
     </style>
   </head>
@@ -110,19 +164,18 @@
 
     <div class="header">
       <div class="header-title" id="header-title">ASO GAMEING EXPLOIT</div>
+      <h2 id="PS4FW">PS4 FW: 0.00 | Compatible</h2>
     </div>
 
     <pre id="update-results" style="white-space: pre-wrap; margin-top: 10px;"></pre>
 
-    <h2 id="PS4FW">PS4 FW: 0.00 | Compatible</h2>
-
     <div id="jailbreak-page">
-      <!-- الزر الأصلي مخفي لتفعيل العملية تلقائياً عبر السكربت -->
+      <!-- الزر الأصلي مخفي لتفعيل العملية برمجياً -->
       <div class="center-btn-wrap" style="display: none;">
         <button id="jailbreak" class="ps-btn" title="PlayStation"></button>
       </div>
 
-      <!-- واجهة الحالة الزجاجية التلقائية -->
+      <!-- بطاقة التحميل الزجاجية ممركزة بالكامل -->
       <div class="glass-status-box">
         <div class="loader" id="loader" style="display: block;">
           <div class="loader-circle"></div>
