@@ -23,79 +23,103 @@
       };
     </script>
     <meta charset="UTF-8" />
-    <title>ASO GAMEING EXPLOIT</title>
+    <title>ASOGAMEING EXPLOIT</title>
     <link rel="stylesheet" href="./css/index.css" />
 
     <style>
-      /* نمط الزجاج الشفاف (Glassmorphism) وتوسيط كامل الصفحة */
+      * {
+        box-sizing: border-box;
+      }
+
+      /* خلفية متدرجة وتوسيط كامل لمحتويات الصفحة */
       body {
         margin: 0;
         padding: 0;
-        background: radial-gradient(circle at center, #1b2838 0%, #0b0e14 100%) !important;
-        color: #e6edf3;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         min-height: 100vh;
+        background: radial-gradient(circle at center, #1a233a 0%, #080c14 100%) !important;
+        color: #f1f5f9;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        box-sizing: border-box;
+        overflow-x: hidden;
       }
 
-      .floating-menu,
-      .floating-menu-payloads,
-      .popup,
-      #DebugConsole,
-      .button-container {
-        background: rgba(255, 255, 255, 0.05) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
-      }
-
+      /* القائمة العلوية الزجاجية */
       .floating-menu {
         position: fixed;
-        top: 20px;
+        top: 24px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 100;
         display: flex;
-        gap: 8px;
-        padding: 8px 16px;
+        gap: 10px;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 50px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
       }
 
-      .header {
+      /* حاوية الواجهة المركزية الزجاجية */
+      .center-glass-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 60px;
+        background: rgba(255, 255, 255, 0.04) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 28px !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.03) !important;
         text-align: center;
-        margin-top: 60px;
+        max-width: 500px;
+        width: 90%;
+        margin: auto;
       }
 
       .header-title {
-        font-size: 2rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: #ffffff;
+        text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        margin: 0;
       }
 
       #PS4FW {
-        text-align: center;
         font-size: 1.1rem;
-        color: #8bb4e7;
-        margin-top: 5px;
+        color: #38bdf8;
+        font-weight: 500;
+        margin: 10px 0 25px 0;
       }
 
+      .status-label {
+        margin-top: 20px;
+        font-size: 1.15rem;
+        color: #94a3b8;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+
+      /* تصميم الأزرار الزجاجية */
       .menu-btn,
       .button-container button,
       .close-btn,
       .floating-menu-payloads button {
-        background: rgba(255, 255, 255, 0.08) !important;
-        color: #fff !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.07) !important;
+        color: #f8fafc !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        border-radius: 12px !important;
         backdrop-filter: blur(8px);
         transition: all 0.25s ease;
-        padding: 8px 16px;
+        padding: 10px 18px;
+        font-weight: 500;
         cursor: pointer;
       }
 
@@ -103,42 +127,23 @@
       .button-container button:hover,
       .close-btn:hover,
       .floating-menu-payloads button:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
-        box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.18) !important;
+        border-color: rgba(56, 189, 248, 0.5) !important;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
         transform: translateY(-2px);
       }
 
-      #jailbreak-page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-      }
-
-      /* بطاقة حالة التشغيل الزجاجية في المنتصف تماماً */
-      .glass-status-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 20px auto;
-        padding: 40px 50px;
-        min-width: 280px;
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 24px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-      }
-
-      .status-label {
-        margin-top: 20px;
-        font-size: 1.15rem;
-        color: #90caf9;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        text-align: center;
+      /* النوافذ المنبثقة ولوحة الـ Debug بالنمط الزجاجي */
+      .popup,
+      #DebugConsole,
+      .button-container,
+      .floating-menu-payloads {
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
       }
 
       #DebugConsole {
@@ -146,14 +151,30 @@
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
-        width: 80%;
-        max-width: 800px;
+        width: 85%;
+        max-width: 750px;
         text-align: center;
+      }
+
+      /* حلقة التحميل */
+      .loader-circle {
+        width: 45px;
+        height: 45px;
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        border-top: 4px solid #38bdf8;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
   </head>
   <body>
-    <!-- Floating Menu -->
+    <!-- القائمة العلوية -->
     <div class="floating-menu">
       <button onclick="showpayloads()" class="menu-btn" id="payloadsbtn">Payloads</button>
       <button class="menu-btn" id="generate-cache-btn">Force-Cache</button>
@@ -162,21 +183,19 @@
       <button onclick="showabout()" class="menu-btn" id="about-btn">About</button>
     </div>
 
-    <div class="header">
-      <div class="header-title" id="header-title">ASO GAMEING EXPLOIT</div>
+    <!-- الكتلة الزجاجية الموحدة في المنتصف -->
+    <div class="center-glass-container">
+      <h1 class="header-title" id="header-title">ASOGAMEING EXPLOIT</h1>
       <h2 id="PS4FW">PS4 FW: 0.00 | Compatible</h2>
-    </div>
 
-    <pre id="update-results" style="white-space: pre-wrap; margin-top: 10px;"></pre>
+      <pre id="update-results" style="white-space: pre-wrap; margin: 0;"></pre>
 
-    <div id="jailbreak-page">
-      <!-- الزر الأصلي مخفي لتفعيل العملية برمجياً -->
-      <div class="center-btn-wrap" style="display: none;">
-        <button id="jailbreak" class="ps-btn" title="PlayStation"></button>
-      </div>
+      <div id="jailbreak-page">
+        <!-- زر التفعيل المخفي للأتمتة -->
+        <div class="center-btn-wrap" style="display: none;">
+          <button id="jailbreak" class="ps-btn" title="PlayStation"></button>
+        </div>
 
-      <!-- بطاقة التحميل الزجاجية ممركزة بالكامل -->
-      <div class="glass-status-box">
         <div class="loader" id="loader" style="display: block;">
           <div class="loader-circle"></div>
         </div>
@@ -184,15 +203,16 @@
       </div>
     </div>
 
-    <div id="payloads-page" style="display: none;">
-      <nav class="floating-menu-payloads">
+    <!-- صفحة الـ Payloads -->
+    <div id="payloads-page" style="display: none; width: 90%; max-width: 900px; margin: 100px auto 40px auto;">
+      <nav class="floating-menu-payloads" style="display: flex; justify-content: center; gap: 10px; padding: 12px; margin-bottom: 20px;">
         <button id="toolb" onclick="showtoolspayloads()">Tools</button>
         <button id="gameb" onclick="showgamepayloads()">Games</button>
         <button id="linuxb" onclick="showlinuxpayloads()">Linux</button>
       </nav>
       <div id="payloads-tools" style="display: block;">
-        <h2 id="tools">Tools</h2>
-        <div class="button-container" id="button-container">
+        <h2 id="tools" style="text-align: center;">Tools</h2>
+        <div class="button-container" id="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 25px;">
           <button id="binloader">Bin-Loader</button>
           <button data-func="load_AppDumper">App-Dumper</button>
           <button data-func="load_KernelDumper">Kernel-Dumper</button>
@@ -219,8 +239,8 @@
         </div>
       </div>
       <div id="payloads-game" style="display: none;">
-        <h2 id="tools">Game</h2>
-        <div class="button-container" id="button-container">
+        <h2 id="tools" style="text-align: center;">Game</h2>
+        <div class="button-container" id="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 25px;">
           <button data-func="load_GTAArbic">GTAV-ArabicGuy-1.27</button>
           <button data-func="load_GTAArbic3">GTAV-ArabicGuy-1.32</button>
           <button data-func="load_GTAArbic33">GTAV-ArabicGuy-1.33</button>
@@ -238,24 +258,24 @@
         </div>
       </div>
       <div id="payloads-linux" style="display: none;">
-        <h2 id="tools">Linux</h2>
-        <div class="button-container" id="button-container">
-          <h2 style="text-align: center;">PS4</h2>
+        <h2 id="tools" style="text-align: center;">Linux</h2>
+        <div class="button-container" id="button-container" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 25px;">
+          <h2 style="width: 100%; text-align: center;">PS4</h2>
           <button data-func="load_Linux">1GBVram</button>
           <button data-func="load_Linux2gb">2GBVram</button>
           <button data-func="load_Linux3gb">3GBVram</button>
           <button data-func="load_Linux4gb">4GBVram</button>
-          <h2 style="text-align: center;">PS4-PRO</h2>
+          <h2 style="width: 100%; text-align: center;">PS4-PRO</h2>
           <button data-func="load_Linux_PRO">1GBVram</button>
           <button data-func="load_Linux2gb_PRO">2GBVram</button>
           <button data-func="load_Linux3gb_PRO">3GBVram</button>
           <button data-func="load_Linux4gb_PRO">4GBVram</button>
-          <h2 style="text-align: center;">PS4-Baikal</h2>
+          <h2 style="width: 100%; text-align: center;">PS4-Baikal</h2>
           <button data-func="load_Linux_Baikal">1GBVram</button>
           <button data-func="load_Linux2gb_Baikal">2GBVram</button>
           <button data-func="load_Linux3gb_Baikal">3GBVram</button>
           <button data-func="load_Linux4gb_Baikal">4GBVram</button>
-          <h2 style="text-align: center;">PS4-Baikal-PRO</h2>
+          <h2 style="width: 100%; text-align: center;">PS4-Baikal-PRO</h2>
           <button data-func="load_Linux_PRO_Baikal">1GBVram</button>
           <button data-func="load_Linux2gb_PRO_Baikal">2GBVram</button>
           <button data-func="load_Linux3gb_PRO_Baikal">3GBVram</button>
@@ -264,15 +284,16 @@
       </div>
     </div>
 
+    <!-- نافذة الـ Debug -->
     <div id="DebugConsole">
-      <h3>Debug Console</h3>
-      <div class="console" style="padding: 20px;"><pre id="console"></pre></div>
+      <h3 style="margin: 10px 0 0 0;">Debug Console</h3>
+      <div class="console" style="padding: 15px;"><pre id="console" style="margin: 0;"></pre></div>
     </div>
 
     <!-- About Popup -->
     <div class="overlay" id="overlay-popup"></div>
-    <div class="popup" id="about-popup">
-      <h2>About ASO GAMEING EXPLOIT</h2>
+    <div class="popup" id="about-popup" style="padding: 25px; text-align: center;">
+      <h2>About ASOGAMEING EXPLOIT</h2>
       <div>
         <p>Version: 1.5.1</p>
         <p>A simple web interface for PS4 jailbreak.</p>
@@ -281,50 +302,29 @@
     </div>
 
     <!-- Settings Popup -->
-    <div class="overlay" id="overlay-popup"></div>
-    <div class="popup" id="settings-popup">
-      <h2>Settings ASO GAMEING EXPLOIT</h2>
+    <div class="popup" id="settings-popup" style="padding: 25px;">
+      <h2>Settings ASOGAMEING EXPLOIT</h2>
 
       <div id="PS4FWOK">
         <h3>PS4 Firmwares supported</h3>
         <div id="listfw">
-          <p>7.00 (HEN only)</p>
-          <p>7.01 (HEN only)</p>
-          <p>7.02 (HEN only)</p>
-          <p>7.50 (HEN only)</p>
-          <p>7.51 (HEN only)</p>
-          <p>7.55 (HEN only)</p>
-          <p>8.00 (HEN only)</p>
-          <p>8.01 (HEN only)</p>
-          <p>8.03 (HEN only)</p>
-          <p>8.50 (HEN only)</p>
-          <p>8.52 (HEN only)</p>
-          <p>9.00</p>
-          <p>9.03</p>
-          <p>9.04 (HEN only)</p>
-          <p>9.50 (HEN only)</p>
-          <p>9.51 (HEN only)</p>
-          <p>9.60</p>
+          <p>7.00 - 9.60</p>
         </div>
       </div>
 
       <div id="choosejb">
         <h3>Choose your flavor</h3>
         <div class="radio-group">
-          <label>
-            <input type="radio" name="hen" value="GoldHEN" onchange="savejbflavor(); choosejb('GoldHEN')"> GoldHEN
-          </label>
-          <label>
-            <input type="radio" name="hen" value="HEN" onchange="savejbflavor(); choosejb('HEN')"> HEN
-          </label>
+          <label><input type="radio" name="hen" value="GoldHEN" onchange="savejbflavor(); choosejb('GoldHEN')"> GoldHEN</label>
+          <label><input type="radio" name="hen" value="HEN" onchange="savejbflavor(); choosejb('HEN')"> HEN</label>
         </div>
         <label id="autojbchkb">
           <input type="checkbox" id="ckbaj" />
-          <p id="agtext">Auto-Jailbreak</p>
+          <span id="agtext">Auto-Jailbreak</span>
         </label>
         <label id="debugconsolechkb">
           <input type="checkbox" id="ckbdc" checked />
-          <p id="agtext">Enable Debug Console</p>
+          <span id="agtext">Enable Debug Console</span>
         </label>
       </div>
 
@@ -334,7 +334,7 @@
 
     <script src="./js/index.js"></script>
 
-    <!-- سكربت التنفيذ التلقائي فور تحميل الصفحة -->
+    <!-- تفعيل تلقائي عند الدخول -->
     <script>
       window.addEventListener("load", function () {
         setTimeout(function () {
